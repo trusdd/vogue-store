@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/vogue-store/static/css/main.0bc3ba93.css",
+    "main.js": "/vogue-store/static/js/main.22d65b4b.js",
+    "index.html": "/vogue-store/index.html",
+    "main.0bc3ba93.css.map": "/vogue-store/static/css/main.0bc3ba93.css.map",
+    "main.22d65b4b.js.map": "/vogue-store/static/js/main.22d65b4b.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.0bc3ba93.css",
+    "static/js/main.22d65b4b.js"
+  ]
+}
