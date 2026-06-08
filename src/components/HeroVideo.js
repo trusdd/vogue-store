@@ -60,7 +60,7 @@ function HeroVideo() {
           loop
           muted
           playsInline>
-          <source src='/video/runway.mp4' type='video/mp4' />
+          <source src='/vogue-store/video/runway.mp4' type='video/mp4' />
         </video>
         <div className='hero-video-overlay'></div>
       </div>

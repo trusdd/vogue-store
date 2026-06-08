@@ -104,7 +104,11 @@ function Navbar({
             onClick={onCartClick}
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}>
-            <img src='/img/shop.png' alt='cart' className='cart-icon-img' />
+            <img
+              src='/vogue-store/img/shop.png'
+              alt='cart'
+              className='cart-icon-img'
+            />
             {cartCount > 0 && (
               <motion.span
                 className='cart-count'
