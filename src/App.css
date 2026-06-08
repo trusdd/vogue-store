@@ -1,0 +1,257 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Helvetica Neue', sans-serif;
+  background: #faf9f8;
+  color: #1a1a1a;
+  overflow-x: hidden;
+}
+
+.app {
+  min-height: 100vh;
+  background: #faf9f8;
+}
+
+.collection-banner {
+  margin: 2rem;
+  padding: 4rem 3rem;
+  background: #f0ede8;
+  border-radius: 32px;
+  position: relative;
+  overflow: hidden;
+}
+
+.collection-banner::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  right: -20%;
+  width: 60%;
+  height: 200%;
+  background: radial-gradient(circle, rgba(0, 0, 0, 0.03), transparent);
+  pointer-events: none;
+}
+
+.collection-banner-content {
+  max-width: 500px;
+  position: relative;
+  z-index: 2;
+}
+
+.collection-label {
+  font-size: 0.7rem;
+  letter-spacing: 4px;
+  color: #1a1a1a;
+  font-weight: 600;
+}
+
+.collection-banner h2 {
+  font-size: 3rem;
+  font-weight: 700;
+  margin: 1rem 0;
+  color: #1a1a1a;
+  letter-spacing: -0.02em;
+}
+
+.collection-banner p {
+  color: #666;
+  line-height: 1.5;
+  margin-bottom: 2rem;
+  font-size: 0.9rem;
+}
+
+.btn-outline-light {
+  padding: 0.8rem 2rem;
+  background: transparent;
+  border: 1px solid #1a1a1a;
+  color: #1a1a1a;
+  border-radius: 0;
+  cursor: pointer;
+  font-weight: 500;
+  transition: all 0.3s;
+  font-size: 0.8rem;
+  letter-spacing: 1px;
+}
+
+.btn-outline-light:hover {
+  background: #1a1a1a;
+  color: white;
+}
+
+.products-section {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 3rem 2rem;
+}
+
+.products-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2rem;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.products-title {
+  font-size: 1rem;
+  font-weight: 600;
+  letter-spacing: 3px;
+  color: #1a1a1a;
+}
+
+.category-filters {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.filter-chip {
+  padding: 0.4rem 1rem;
+  background: white;
+  border: 1px solid #e0e0e0;
+  border-radius: 0;
+  color: #666;
+  cursor: pointer;
+  transition: all 0.2s;
+  font-size: 0.7rem;
+  letter-spacing: 1px;
+}
+
+.filter-chip:hover {
+  border-color: #1a1a1a;
+  color: #1a1a1a;
+}
+
+.filter-chip.active {
+  background: #1a1a1a;
+  border-color: #1a1a1a;
+  color: white;
+}
+
+.products-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 2rem;
+}
+
+.favorites-page {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 6rem 2rem 4rem;
+  min-height: 70vh;
+}
+
+.favorites-header {
+  margin-bottom: 2rem;
+  border-bottom: 1px solid #e0e0e0;
+  padding-bottom: 1rem;
+}
+
+.favorites-header h1 {
+  font-size: 1.5rem;
+  font-weight: 500;
+  margin-bottom: 0.3rem;
+  letter-spacing: 2px;
+}
+
+.favorites-header p {
+  color: #999;
+  font-size: 0.75rem;
+  letter-spacing: 1px;
+}
+
+.empty-favorites {
+  text-align: center;
+  padding: 5rem 2rem;
+  background: white;
+  border-radius: 24px;
+}
+
+.empty-icon {
+  font-size: 3rem;
+  margin-bottom: 1rem;
+  opacity: 0.4;
+}
+
+.empty-favorites h2 {
+  font-size: 1.2rem;
+  margin-bottom: 0.5rem;
+  font-weight: 500;
+  letter-spacing: 2px;
+}
+
+.empty-favorites p {
+  color: #999;
+  margin-bottom: 2rem;
+  font-size: 0.8rem;
+}
+
+.btn-primary {
+  padding: 0.7rem 1.8rem;
+  background: #1a1a1a;
+  border: none;
+  border-radius: 0;
+  color: white;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s;
+  letter-spacing: 1px;
+  font-size: 0.7rem;
+}
+
+.btn-primary:hover {
+  background: #333;
+}
+
+@media (max-width: 1024px) {
+  .products-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .collection-banner {
+    margin: 1rem;
+    padding: 2.5rem 1.5rem;
+    border-radius: 20px;
+  }
+
+  .collection-banner h2 {
+    font-size: 2rem;
+  }
+
+  .products-section {
+    padding: 2rem 1rem;
+  }
+
+  .products-header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .products-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+  }
+
+  .favorites-page {
+    padding: 5rem 1rem 2rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .products-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.8rem;
+  }
+
+  .collection-banner h2 {
+    font-size: 1.5rem;
+  }
+}

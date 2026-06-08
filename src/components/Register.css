@@ -1,0 +1,100 @@
+.register-page {
+  min-height: 100vh;
+  background: #faf9f8;
+  padding: 8rem 2rem 4rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.register-container {
+  max-width: 450px;
+  width: 100%;
+  margin: 0 auto;
+}
+
+.register-card {
+  background: white;
+  padding: 3rem;
+  border: 1px solid #f0ede8;
+  text-align: center;
+}
+
+.register-card h1 {
+  font-size: 1.8rem;
+  font-weight: 500;
+  letter-spacing: 3px;
+  margin-bottom: 0.5rem;
+}
+
+.register-subtitle {
+  font-size: 0.75rem;
+  color: #999;
+  letter-spacing: 1px;
+  margin-bottom: 2rem;
+}
+
+.register-card input {
+  width: 100%;
+  padding: 0.8rem;
+  margin-bottom: 1rem;
+  border: 1px solid #e0e0e0;
+  background: white;
+  font-family: inherit;
+  font-size: 0.85rem;
+  transition: border 0.2s;
+}
+
+.register-card input:focus {
+  outline: none;
+  border-color: #1a1a1a;
+}
+
+.register-submit {
+  width: 100%;
+  padding: 0.8rem;
+  background: #1a1a1a;
+  border: none;
+  color: white;
+  font-weight: 500;
+  letter-spacing: 2px;
+  cursor: pointer;
+  transition: background 0.2s;
+  margin-top: 0.5rem;
+}
+
+.register-submit:hover {
+  background: #333;
+}
+
+.register-links {
+  margin-top: 1.5rem;
+}
+
+.register-links button {
+  background: none;
+  border: none;
+  font-size: 0.7rem;
+  letter-spacing: 1px;
+  color: #666;
+  cursor: pointer;
+  transition: color 0.2s;
+}
+
+.register-links button:hover {
+  color: #1a1a1a;
+}
+
+@media (max-width: 768px) {
+  .register-page {
+    padding: 6rem 1rem 2rem;
+  }
+
+  .register-card {
+    padding: 2rem;
+  }
+
+  .register-card h1 {
+    font-size: 1.5rem;
+  }
+}

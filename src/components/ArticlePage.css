@@ -1,0 +1,166 @@
+.article-page {
+  min-height: 100vh;
+  background: #faf9f8;
+}
+
+.article-container {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 8rem 2rem 4rem;
+}
+
+.article-back {
+  background: none;
+  border: none;
+  font-size: 0.7rem;
+  letter-spacing: 2px;
+  cursor: pointer;
+  margin-bottom: 2rem;
+  padding: 0.5rem 0;
+  color: #666;
+  transition: color 0.2s;
+}
+
+.article-back:hover {
+  color: #1a1a1a;
+}
+
+.article-hero {
+  position: relative;
+  margin-bottom: 3rem;
+  overflow: hidden;
+  border-radius: 0;
+}
+
+.article-hero img {
+  width: 100%;
+  height: 500px;
+  object-fit: cover;
+}
+
+.article-hero-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.6), transparent);
+}
+
+.article-hero-content {
+  position: absolute;
+  bottom: 2rem;
+  left: 2rem;
+  color: white;
+  z-index: 2;
+}
+
+.article-date {
+  font-size: 0.7rem;
+  letter-spacing: 2px;
+  display: block;
+  margin-bottom: 0.5rem;
+}
+
+.article-hero-content h1 {
+  font-size: 2.5rem;
+  font-weight: 500;
+  margin-bottom: 0.5rem;
+  letter-spacing: -0.02em;
+}
+
+.article-author {
+  font-size: 0.7rem;
+  letter-spacing: 1px;
+  opacity: 0.8;
+}
+
+.article-content {
+  background: white;
+  padding: 3rem;
+  margin-bottom: 2rem;
+}
+
+.article-content p {
+  font-size: 1rem;
+  line-height: 1.7;
+  color: #333;
+  margin-bottom: 1.5rem;
+}
+
+.article-content h2 {
+  font-size: 1.3rem;
+  font-weight: 500;
+  margin: 2rem 0 1rem;
+  letter-spacing: -0.01em;
+}
+
+.article-quote {
+  margin: 2rem 0;
+  padding: 2rem;
+  background: #f5f5f0;
+  border-left: 3px solid #1a1a1a;
+}
+
+.article-quote p {
+  font-size: 1.1rem;
+  font-style: italic;
+  margin-bottom: 0.5rem;
+  color: #1a1a1a;
+}
+
+.article-quote span {
+  font-size: 0.7rem;
+  letter-spacing: 1px;
+  color: #666;
+}
+
+.article-footer {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.article-share,
+.article-back-btn {
+  padding: 0.8rem 1.5rem;
+  background: transparent;
+  border: 1px solid #e0e0e0;
+  cursor: pointer;
+  transition: all 0.2s;
+  font-size: 0.7rem;
+  letter-spacing: 1px;
+}
+
+.article-share:hover,
+.article-back-btn:hover {
+  background: #1a1a1a;
+  border-color: #1a1a1a;
+  color: white;
+}
+
+@media (max-width: 768px) {
+  .article-container {
+    padding: 6rem 1rem 2rem;
+  }
+
+  .article-hero img {
+    height: 300px;
+  }
+
+  .article-hero-content h1 {
+    font-size: 1.5rem;
+  }
+
+  .article-content {
+    padding: 1.5rem;
+  }
+
+  .article-content p {
+    font-size: 0.9rem;
+  }
+
+  .article-footer {
+    flex-direction: column;
+  }
+}
