@@ -59,7 +59,8 @@ function HeroVideo() {
           autoPlay
           loop
           muted
-          playsInline>
+          playsInline
+          preload='auto'>
           <source src='/vogue-store/video/runway.mp4' type='video/mp4' />
         </video>
         <div className='hero-video-overlay'></div>

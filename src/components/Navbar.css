@@ -31,6 +31,7 @@
   letter-spacing: 3px;
   cursor: pointer;
   color: #1a1a1a;
+  z-index: 1001;
 }
 
 .navbar-nav {
@@ -78,6 +79,7 @@
   cursor: pointer;
   position: relative;
   padding: 0.3rem;
+  z-index: 1001;
 }
 
 .cart-icon-img {
@@ -113,15 +115,24 @@
   border: none;
   cursor: pointer;
   flex-direction: column;
-  gap: 5px;
-  padding: 0.3rem;
+  gap: 6px;
+  padding: 0.5rem;
+  z-index: 1001;
 }
 
 .menu-toggle span {
-  width: 22px;
-  height: 1px;
+  width: 24px;
+  height: 2px;
   background: #1a1a1a;
-  transition: all 0.3s;
+  transition: all 0.3s ease;
+}
+
+.menu-toggle.open span:first-child {
+  transform: rotate(45deg) translate(6px, 6px);
+}
+
+.menu-toggle.open span:last-child {
+  transform: rotate(-45deg) translate(6px, -6px);
 }
 
 @media (max-width: 768px) {
@@ -150,8 +161,9 @@
     align-items: center;
     gap: 2rem;
     transition: right 0.3s ease;
-    box-shadow: -5px 0 20px rgba(0, 0, 0, 0.05);
-    z-index: 999;
+    box-shadow: -5px 0 30px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+    padding: 2rem;
   }
 
   .navbar-nav.open {
@@ -159,6 +171,11 @@
   }
 
   .nav-link-premium {
-    font-size: 0.85rem;
+    font-size: 0.9rem;
+    color: #1a1a1a;
+  }
+
+  .nav-link-premium.active::after {
+    bottom: -4px;
   }
 }

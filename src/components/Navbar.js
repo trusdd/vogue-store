@@ -27,6 +27,8 @@ function Navbar({
     setIsMenuOpen(false);
   };
 
+  const closeMenu = () => setIsMenuOpen(false);
+
   return (
     <motion.header
       className={`navbar-premium ${scrolled ? 'scrolled' : ''}`}
@@ -36,7 +38,10 @@ function Navbar({
       <div className='navbar-container'>
         <motion.div
           className='navbar-logo'
-          onClick={() => onPageChange('home')}
+          onClick={() => {
+            onPageChange('home');
+            closeMenu();
+          }}
           whileHover={{ scale: 1.02 }}>
           VOGUE
         </motion.div>
@@ -48,7 +53,7 @@ function Navbar({
             onClick={(e) => {
               e.preventDefault();
               onPageChange('home');
-              setIsMenuOpen(false);
+              closeMenu();
             }}>
             HOME
           </a>
@@ -58,7 +63,7 @@ function Navbar({
             onClick={(e) => {
               e.preventDefault();
               onPageChange('journal');
-              setIsMenuOpen(false);
+              closeMenu();
             }}>
             JOURNAL
           </a>
@@ -68,7 +73,7 @@ function Navbar({
             onClick={(e) => {
               e.preventDefault();
               onPageChange('stores');
-              setIsMenuOpen(false);
+              closeMenu();
             }}>
             STORES
           </a>
@@ -78,7 +83,7 @@ function Navbar({
             onClick={(e) => {
               e.preventDefault();
               onPageChange('favorites');
-              setIsMenuOpen(false);
+              closeMenu();
             }}>
             WISHLIST
           </a>
@@ -92,7 +97,7 @@ function Navbar({
               } else {
                 onPageChange('login');
               }
-              setIsMenuOpen(false);
+              closeMenu();
             }}>
             {isLoggedIn ? 'LOGOUT' : 'LOGIN'}
           </a>
@@ -121,7 +126,7 @@ function Navbar({
           </motion.button>
 
           <button
-            className='menu-toggle'
+            className={`menu-toggle ${isMenuOpen ? 'open' : ''}`}
             onClick={() => setIsMenuOpen(!isMenuOpen)}>
             <span></span>
             <span></span>

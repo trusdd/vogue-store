@@ -19,6 +19,9 @@
   width: 100%;
   height: 100%;
   object-fit: cover;
+  -webkit-transform: translateZ(0);
+  transform: translateZ(0);
+  will-change: transform;
 }
 
 .hero-video-overlay {
@@ -110,9 +113,29 @@
     font-size: 2.5rem;
   }
 
+  .hero-premium-content p {
+    font-size: 0.8rem;
+  }
+
   .btn-primary-hero,
   .btn-outline-hero {
     padding: 0.6rem 1.2rem;
     font-size: 0.65rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .hero-premium-content h1 {
+    font-size: 2rem;
+  }
+
+  .hero-premium-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 0.8rem;
+  }
+
+  .btn-primary-hero {
+    margin-right: 0;
   }
 }
