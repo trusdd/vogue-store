@@ -1,13 +1,13 @@
 {
   "files": {
-    "main.css": "/vogue-store/static/css/main.0b841b45.css",
-    "main.js": "/vogue-store/static/js/main.33a2744e.js",
+    "main.css": "/vogue-store/static/css/main.1a85fb0a.css",
+    "main.js": "/vogue-store/static/js/main.d4666f85.js",
     "index.html": "/vogue-store/index.html",
-    "main.0b841b45.css.map": "/vogue-store/static/css/main.0b841b45.css.map",
-    "main.33a2744e.js.map": "/vogue-store/static/js/main.33a2744e.js.map"
+    "main.1a85fb0a.css.map": "/vogue-store/static/css/main.1a85fb0a.css.map",
+    "main.d4666f85.js.map": "/vogue-store/static/js/main.d4666f85.js.map"
   },
   "entrypoints": [
-    "static/css/main.0b841b45.css",
-    "static/js/main.33a2744e.js"
+    "static/css/main.1a85fb0a.css",
+    "static/js/main.d4666f85.js"
   ]
 }
