@@ -1,5 +1,7 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import './ProductPage.css';
+import SizeGuide from './SizeGuide';
+import ProductCard from './ProductCard';
 
 function ProductPage({
   product,
@@ -7,8 +9,31 @@ function ProductPage({
   onToggleFavorite,
   isFavorite,
   onBack,
+  allProducts,
 }) {
-  const [selectedSize, setSelectedSize] = React.useState(null);
+  const [selectedSize, setSelectedSize] = useState(null);
+  const [isSizeGuideOpen, setIsSizeGuideOpen] = useState(false);
+  const [recommended, setRecommended] = useState([]);
+
+  useEffect(() => {
+    const savedViews = JSON.parse(
+      localStorage.getItem('recentlyViewed') || '[]',
+    );
+    const updated = [
+      product,
+      ...savedViews.filter((p) => p.id !== product.id),
+    ].slice(0, 6);
+    localStorage.setItem('recentlyViewed', JSON.stringify(updated));
+  }, [product]);
+
+  useEffect(() => {
+    if (allProducts && product) {
+      const sameCategory = allProducts.filter(
+        (p) => p.category === product.category && p.id !== product.id,
+      );
+      setRecommended(sameCategory.slice(0, 4));
+    }
+  }, [product, allProducts]);
 
   const handleAdd = () => {
     onAddToCart(product);
@@ -38,7 +63,14 @@ function ProductPage({
             </div>
 
             <div className='product-page-sizes'>
-              <h4>SIZE</h4>
+              <div className='sizes-header'>
+                <h4>SIZE</h4>
+                <button
+                  className='size-guide-link'
+                  onClick={() => setIsSizeGuideOpen(true)}>
+                  Size Guide →
+                </button>
+              </div>
               <div className='size-grid'>
                 {product.sizes.map((size) => (
                   <button
@@ -68,7 +100,30 @@ function ProductPage({
             </div>
           </div>
         </div>
+
+        {recommended.length > 0 && (
+          <div className='recommended-section'>
+            <h3>YOU MAY ALSO LIKE</h3>
+            <div className='recommended-grid'>
+              {recommended.map((rec) => (
+                <div key={rec.id} onClick={() => window.location.reload()}>
+                  <ProductCard
+                    product={rec}
+                    onAddToCart={onAddToCart}
+                    onToggleFavorite={onToggleFavorite}
+                    isFavorite={false}
+                  />
+                </div>
+              ))}
+            </div>
+          </div>
+        )}
       </div>
+
+      <SizeGuide
+        isOpen={isSizeGuideOpen}
+        onClose={() => setIsSizeGuideOpen(false)}
+      />
     </div>
   );
 }

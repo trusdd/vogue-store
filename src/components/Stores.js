@@ -2,7 +2,7 @@ import React, { useEffect, useRef } from 'react';
 import { motion } from 'framer-motion';
 import './Stores.css';
 
-function Stores() {
+function Stores({ isDarkMode }) {
   const mapRef = useRef(null);
   const mapInstanceRef = useRef(null);
 
@@ -112,7 +112,7 @@ function Stores() {
   ];
 
   return (
-    <div className='stores-page'>
+    <div className={`stores-page ${isDarkMode ? 'dark-mode' : ''}`}>
       <div className='stores-container'>
         <div className='stores-header'>
           <h1>STORES</h1>

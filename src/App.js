@@ -13,6 +13,10 @@ import Checkout from './components/Checkout';
 import Login from './components/Login';
 import Register from './components/Register';
 import ArticlePage from './components/ArticlePage';
+import About from './components/About';
+import Shipping from './components/Shipping';
+import FAQ from './components/FAQ';
+import PriceFilter from './components/PriceFilter';
 
 function App() {
   const [products, setProducts] = useState([]);
@@ -24,16 +28,23 @@ function App() {
   const [selectedProduct, setSelectedProduct] = useState(null);
   const [selectedArticle, setSelectedArticle] = useState(null);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [sortBy, setSortBy] = useState('default');
+  const [priceMin, setPriceMin] = useState(0);
+  const [priceMax, setPriceMax] = useState(60000);
+  const [isDarkMode, setIsDarkMode] = useState(false);
+  const [isSortOpen, setIsSortOpen] = useState(false);
 
   useEffect(() => {
     const savedCart = localStorage.getItem('cart');
     const savedFavorites = localStorage.getItem('favorites');
     const savedLogin = localStorage.getItem('isLoggedIn');
     const savedScrollPosition = localStorage.getItem('scrollPosition');
+    const savedTheme = localStorage.getItem('darkMode');
 
     if (savedCart) setCartItems(JSON.parse(savedCart));
     if (savedFavorites) setFavorites(JSON.parse(savedFavorites));
     if (savedLogin) setIsLoggedIn(JSON.parse(savedLogin));
+    if (savedTheme) setIsDarkMode(JSON.parse(savedTheme));
 
     if (savedScrollPosition && window.location.hash !== '#product') {
       setTimeout(() => {
@@ -220,7 +231,26 @@ function App() {
     localStorage.setItem('cart', JSON.stringify(cartItems));
     localStorage.setItem('favorites', JSON.stringify(favorites));
     localStorage.setItem('isLoggedIn', JSON.stringify(isLoggedIn));
-  }, [cartItems, favorites, isLoggedIn]);
+    localStorage.setItem('darkMode', JSON.stringify(isDarkMode));
+  }, [cartItems, favorites, isLoggedIn, isDarkMode]);
+
+  useEffect(() => {
+    if (isDarkMode) {
+      document.body.classList.add('dark-mode');
+    } else {
+      document.body.classList.remove('dark-mode');
+    }
+  }, [isDarkMode]);
+
+  useEffect(() => {
+    const handleClickOutside = (e) => {
+      if (!e.target.closest('.sort-select-wrapper')) {
+        setIsSortOpen(false);
+      }
+    };
+    document.addEventListener('click', handleClickOutside);
+    return () => document.removeEventListener('click', handleClickOutside);
+  }, []);
 
   const addToCart = (product) => {
     setCartItems((prev) => {
@@ -287,9 +317,23 @@ function App() {
     setSelectedProduct(null);
   };
 
-  const filteredProducts = products.filter((p) => {
+  const toggleTheme = () => {
+    setIsDarkMode(!isDarkMode);
+  };
+
+  const filteredByCategory = products.filter((p) => {
     if (activeCategory === 'all') return true;
     return p.category === activeCategory;
+  });
+
+  const filteredByPrice = filteredByCategory.filter((p) => {
+    return p.price >= priceMin && p.price <= priceMax;
+  });
+
+  const sortedProducts = [...filteredByPrice].sort((a, b) => {
+    if (sortBy === 'price-asc') return a.price - b.price;
+    if (sortBy === 'price-desc') return b.price - a.price;
+    return 0;
   });
 
   const scrollToProducts = () => {
@@ -319,6 +363,8 @@ function App() {
         }}
         isLoggedIn={isLoggedIn}
         onLogout={() => setIsLoggedIn(false)}
+        isDarkMode={isDarkMode}
+        onToggleTheme={toggleTheme}
       />
 
       <main>
@@ -352,27 +398,79 @@ function App() {
               <div className='products-section'>
                 <div className='products-header'>
                   <h3 className='products-title'>НОВАЯ КОЛЛЕКЦИЯ</h3>
-                  <div className='category-filters'>
-                    <button
-                      className={`filter-chip ${activeCategory === 'all' ? 'active' : ''}`}
-                      onClick={() => setActiveCategory('all')}>
-                      ВСЕ
-                    </button>
-                    <button
-                      className={`filter-chip ${activeCategory === 'tshirt' ? 'active' : ''}`}
-                      onClick={() => setActiveCategory('tshirt')}>
-                      ERD
-                    </button>
-                    <button
-                      className={`filter-chip ${activeCategory === 'sneakers' ? 'active' : ''}`}
-                      onClick={() => setActiveCategory('sneakers')}>
-                      NIKE
-                    </button>
+
+                  <div className='filters-sort'>
+                    <PriceFilter
+                      min={priceMin}
+                      max={priceMax}
+                      onMinChange={(val) => setPriceMin(val)}
+                      onMaxChange={(val) => setPriceMax(val)}
+                    />
+
+                    <div className='sort-select-wrapper'>
+                      <div
+                        className='sort-select-trigger'
+                        onClick={() => setIsSortOpen(!isSortOpen)}>
+                        <span>
+                          {sortBy === 'default'
+                            ? 'SORT BY'
+                            : sortBy === 'price-asc'
+                              ? 'PRICE: LOW TO HIGH'
+                              : 'PRICE: HIGH TO LOW'}
+                        </span>
+                        <span>{isSortOpen ? '▲' : '▼'}</span>
+                      </div>
+                      <div
+                        className={`sort-dropdown ${isSortOpen ? 'open' : ''}`}>
+                        <div
+                          className={`sort-option ${sortBy === 'default' ? 'active' : ''}`}
+                          onClick={() => {
+                            setSortBy('default');
+                            setIsSortOpen(false);
+                          }}>
+                          DEFAULT
+                        </div>
+                        <div
+                          className={`sort-option ${sortBy === 'price-asc' ? 'active' : ''}`}
+                          onClick={() => {
+                            setSortBy('price-asc');
+                            setIsSortOpen(false);
+                          }}>
+                          PRICE: LOW TO HIGH
+                        </div>
+                        <div
+                          className={`sort-option ${sortBy === 'price-desc' ? 'active' : ''}`}
+                          onClick={() => {
+                            setSortBy('price-desc');
+                            setIsSortOpen(false);
+                          }}>
+                          PRICE: HIGH TO LOW
+                        </div>
+                      </div>
+                    </div>
+
+                    <div className='category-filters'>
+                      <button
+                        className={`filter-chip ${activeCategory === 'all' ? 'active' : ''}`}
+                        onClick={() => setActiveCategory('all')}>
+                        ALL
+                      </button>
+                      <button
+                        className={`filter-chip ${activeCategory === 'tshirt' ? 'active' : ''}`}
+                        onClick={() => setActiveCategory('tshirt')}>
+                        ERD
+                      </button>
+                      <button
+                        className={`filter-chip ${activeCategory === 'sneakers' ? 'active' : ''}`}
+                        onClick={() => setActiveCategory('sneakers')}>
+                        NIKE
+                      </button>
+                    </div>
                   </div>
                 </div>
 
                 <div className='products-grid'>
-                  {filteredProducts.map((product, index) => (
+                  {sortedProducts.map((product, index) => (
                     <motion.div
                       key={product.id}
                       initial={{ opacity: 0, y: 20 }}
@@ -443,13 +541,14 @@ function App() {
                 onToggleFavorite={toggleFavorite}
                 isFavorite={favorites.includes(selectedProduct.id)}
                 onBack={goBackToHome}
+                allProducts={products}
               />
             </motion.div>
           )}
 
           {currentPage === 'journal' && (
             <motion.div key='journal' {...pageTransition}>
-              <Journal onOpenArticle={openArticle} />
+              <Journal onOpenArticle={openArticle} isDarkMode={isDarkMode} />
             </motion.div>
           )}
 
@@ -464,13 +563,17 @@ function App() {
 
           {currentPage === 'stores' && (
             <motion.div key='stores' {...pageTransition}>
-              <Stores />
+              <Stores isDarkMode={isDarkMode} />
             </motion.div>
           )}
 
           {currentPage === 'checkout' && (
             <motion.div key='checkout' {...pageTransition}>
-              <Checkout cartItems={cartItems} total={getCartTotal()} />
+              <Checkout
+                cartItems={cartItems}
+                total={getCartTotal()}
+                isDarkMode={isDarkMode}
+              />
             </motion.div>
           )}
 
@@ -479,13 +582,35 @@ function App() {
               <Login
                 onLogin={() => setIsLoggedIn(true)}
                 onRegister={() => setCurrentPage('register')}
+                isDarkMode={isDarkMode}
               />
             </motion.div>
           )}
 
           {currentPage === 'register' && (
             <motion.div key='register' {...pageTransition}>
-              <Register onRegister={() => setCurrentPage('login')} />
+              <Register
+                onRegister={() => setCurrentPage('login')}
+                isDarkMode={isDarkMode}
+              />
+            </motion.div>
+          )}
+
+          {currentPage === 'about' && (
+            <motion.div key='about' {...pageTransition}>
+              <About isDarkMode={isDarkMode} />
+            </motion.div>
+          )}
+
+          {currentPage === 'shipping' && (
+            <motion.div key='shipping' {...pageTransition}>
+              <Shipping isDarkMode={isDarkMode} />
+            </motion.div>
+          )}
+
+          {currentPage === 'faq' && (
+            <motion.div key='faq' {...pageTransition}>
+              <FAQ isDarkMode={isDarkMode} />
             </motion.div>
           )}
         </AnimatePresence>
@@ -504,7 +629,7 @@ function App() {
         }}
       />
 
-      <Footer />
+      <Footer onPageChange={setCurrentPage} isDarkMode={isDarkMode} />
     </div>
   );
 }

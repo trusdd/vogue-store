@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import './Cart.css';
 
@@ -11,7 +11,24 @@ function Cart({
   total,
   onCheckout,
 }) {
-  if (!isOpen) return null;
+  const [promoCode, setPromoCode] = useState('');
+  const [discount, setDiscount] = useState(0);
+  const [message, setMessage] = useState('');
+
+  const applyPromo = () => {
+    if (promoCode === 'WELCOME10') {
+      setDiscount(total * 0.1);
+      setMessage('10% discount applied!');
+    } else if (promoCode === 'VOGUE20') {
+      setDiscount(total * 0.2);
+      setMessage('20% discount applied!');
+    } else {
+      setDiscount(0);
+      setMessage('Invalid promo code');
+    }
+  };
+
+  const finalTotal = total - discount;
 
   const sidebarVariants = {
     hidden: { x: '100%' },
@@ -25,6 +42,8 @@ function Cart({
     exit: { opacity: 0, transition: { duration: 0.2 } },
   };
 
+  if (!isOpen) return null;
+
   return (
     <AnimatePresence>
       {isOpen && (
@@ -35,7 +54,8 @@ function Cart({
             initial='hidden'
             animate='visible'
             exit='exit'
-            onClick={onClose}></motion.div>
+            onClick={onClose}
+          />
 
           <motion.div
             className='cart-sidebar'
@@ -88,18 +108,34 @@ function Cart({
 
             {items.length > 0 && (
               <div className='cart-footer'>
+                <div className='cart-promo'>
+                  <input
+                    type='text'
+                    placeholder='PROMO CODE'
+                    value={promoCode}
+                    onChange={(e) => setPromoCode(e.target.value)}
+                  />
+                  <button onClick={applyPromo}>APPLY</button>
+                  {message && <p className='promo-message'>{message}</p>}
+                </div>
+
                 <div className='cart-total'>
-                  <span>ИТОГО</span>
+                  <span>SUBTOTAL</span>
                   <span>₽{total.toLocaleString()}</span>
                 </div>
-                <button
-                  className='checkout-btn'
-                  onClick={() => {
-                    if (onCheckout) {
-                      onCheckout();
-                    }
-                  }}>
-                  ОФОРМИТЬ
+                {discount > 0 && (
+                  <div className='cart-discount'>
+                    <span>DISCOUNT</span>
+                    <span>-₽{discount.toLocaleString()}</span>
+                  </div>
+                )}
+                <div className='cart-final'>
+                  <span>TOTAL</span>
+                  <span>₽{finalTotal.toLocaleString()}</span>
+                </div>
+
+                <button className='checkout-btn' onClick={onCheckout}>
+                  CHECKOUT
                 </button>
               </div>
             )}

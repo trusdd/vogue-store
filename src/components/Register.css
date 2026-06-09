@@ -1,40 +1,56 @@
-.register-page {
+.auth-page {
   min-height: 100vh;
   background: #faf9f8;
   padding: 8rem 2rem 4rem;
   display: flex;
   align-items: center;
   justify-content: center;
+  transition: background 0.3s ease;
 }
 
-.register-container {
+.auth-page.dark-mode {
+  background: #0a0a0a;
+}
+
+.auth-container {
   max-width: 450px;
   width: 100%;
   margin: 0 auto;
 }
 
-.register-card {
+.auth-card {
   background: white;
   padding: 3rem;
   border: 1px solid #f0ede8;
   text-align: center;
+  transition: background 0.3s ease, border-color 0.3s ease;
 }
 
-.register-card h1 {
+.auth-page.dark-mode .auth-card {
+  background: #1a1a1a;
+  border-color: #2a2a2a;
+}
+
+.auth-card h1 {
   font-size: 1.8rem;
   font-weight: 500;
   letter-spacing: 3px;
   margin-bottom: 0.5rem;
+  color: #1a1a1a;
 }
 
-.register-subtitle {
+.auth-page.dark-mode .auth-card h1 {
+  color: white;
+}
+
+.auth-subtitle {
   font-size: 0.75rem;
   color: #999;
   letter-spacing: 1px;
   margin-bottom: 2rem;
 }
 
-.register-card input {
+.auth-card input {
   width: 100%;
   padding: 0.8rem;
   margin-bottom: 1rem;
@@ -45,12 +61,22 @@
   transition: border 0.2s;
 }
 
-.register-card input:focus {
+.auth-page.dark-mode .auth-card input {
+  background: #0a0a0a;
+  border-color: #2a2a2a;
+  color: white;
+}
+
+.auth-card input:focus {
   outline: none;
   border-color: #1a1a1a;
 }
 
-.register-submit {
+.auth-page.dark-mode .auth-card input:focus {
+  border-color: #667eea;
+}
+
+.auth-submit {
   width: 100%;
   padding: 0.8rem;
   background: #1a1a1a;
@@ -63,15 +89,23 @@
   margin-top: 0.5rem;
 }
 
-.register-submit:hover {
+.auth-submit:hover {
   background: #333;
 }
 
-.register-links {
+.auth-page.dark-mode .auth-submit {
+  background: #667eea;
+}
+
+.auth-page.dark-mode .auth-submit:hover {
+  background: #7c8eea;
+}
+
+.auth-links {
   margin-top: 1.5rem;
 }
 
-.register-links button {
+.auth-links button {
   background: none;
   border: none;
   font-size: 0.7rem;
@@ -81,20 +115,28 @@
   transition: color 0.2s;
 }
 
-.register-links button:hover {
+.auth-links button:hover {
   color: #1a1a1a;
 }
 
+.auth-page.dark-mode .auth-links button {
+  color: #aaa;
+}
+
+.auth-page.dark-mode .auth-links button:hover {
+  color: #667eea;
+}
+
 @media (max-width: 768px) {
-  .register-page {
+  .auth-page {
     padding: 6rem 1rem 2rem;
   }
 
-  .register-card {
+  .auth-card {
     padding: 2rem;
   }
 
-  .register-card h1 {
+  .auth-card h1 {
     font-size: 1.5rem;
   }
 }

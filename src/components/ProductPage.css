@@ -165,3 +165,38 @@
     font-size: 1.2rem;
   }
 }
+
+.sizes-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.size-guide-link {
+  background: none;
+  border: none;
+  font-size: 0.65rem;
+  letter-spacing: 1px;
+  cursor: pointer;
+  color: #666;
+  text-decoration: underline;
+}
+
+.recommended-section {
+  margin-top: 4rem;
+  padding-top: 2rem;
+  border-top: 1px solid #f0ede8;
+}
+
+.recommended-section h3 {
+  font-size: 1rem;
+  letter-spacing: 2px;
+  margin-bottom: 1.5rem;
+}
+
+.recommended-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 1.5rem;
+}

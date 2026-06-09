@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import './Register.css';
 
-function Register({ onRegister }) {
+function Register({ onRegister, isDarkMode }) {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
@@ -19,7 +19,7 @@ function Register({ onRegister }) {
   };
 
   return (
-    <div className='auth-page'>
+    <div className={`auth-page ${isDarkMode ? 'dark-mode' : ''}`}>
       <div className='auth-container'>
         <div className='auth-card'>
           <h1>РЕГИСТРАЦИЯ</h1>

@@ -1,0 +1,45 @@
+.shipping-page {
+  min-height: 100vh;
+  background: #faf9f8;
+  padding: 8rem 2rem 4rem;
+}
+
+.shipping-container {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.shipping-container h1 {
+  font-size: 2rem;
+  font-weight: 500;
+  letter-spacing: 3px;
+  margin-bottom: 2rem;
+}
+
+.shipping-section {
+  margin-bottom: 2.5rem;
+}
+
+.shipping-section h2 {
+  font-size: 1.1rem;
+  font-weight: 500;
+  margin-bottom: 1rem;
+  letter-spacing: 1px;
+}
+
+.shipping-section p {
+  font-size: 0.9rem;
+  line-height: 1.5;
+  color: #666;
+  margin-bottom: 0.5rem;
+}
+
+@media (max-width: 768px) {
+  .shipping-page {
+    padding: 6rem 1rem 2rem;
+  }
+
+  .shipping-container h1 {
+    font-size: 1.5rem;
+  }
+}

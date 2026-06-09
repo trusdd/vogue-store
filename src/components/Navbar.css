@@ -17,6 +17,11 @@
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.02);
 }
 
+body.dark-mode .navbar-premium.scrolled {
+  background: rgba(10, 10, 10, 0.98);
+  border-bottom-color: #2a2a2a;
+}
+
 .navbar-container {
   max-width: 1400px;
   margin: 0 auto;
@@ -32,6 +37,10 @@
   cursor: pointer;
   color: #1a1a1a;
   z-index: 1001;
+}
+
+body.dark-mode .navbar-logo {
+  color: white;
 }
 
 .navbar-nav {
@@ -65,6 +74,19 @@
   right: 0;
   height: 1px;
   background: #1a1a1a;
+}
+
+body.dark-mode .nav-link-premium {
+  color: #aaa;
+}
+
+body.dark-mode .nav-link-premium:hover,
+body.dark-mode .nav-link-premium.active {
+  color: white;
+}
+
+body.dark-mode .nav-link-premium.active::after {
+  background: white;
 }
 
 .navbar-actions {
@@ -109,6 +131,43 @@
   font-weight: 600;
 }
 
+.theme-toggle {
+  background: none;
+  border: none;
+  font-size: 1.2rem;
+  cursor: pointer;
+  padding: 0.3rem;
+  outline: none;
+  box-shadow: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.2s;
+  color: #1a1a1a;
+}
+
+.theme-toggle:focus {
+  outline: none;
+  box-shadow: none;
+}
+
+.theme-toggle:hover {
+  transform: scale(1.1);
+}
+
+body.dark-mode .theme-toggle {
+  color: white;
+}
+
+body.dark-mode .cart-icon-img {
+  filter: brightness(0) invert(1);
+  opacity: 1;
+}
+
+body.dark-mode .cart-btn-premium:hover .cart-icon-img {
+  opacity: 0.8;
+}
+
 .menu-toggle {
   display: none;
   background: transparent;
@@ -127,6 +186,10 @@
   transition: all 0.3s ease;
 }
 
+body.dark-mode .menu-toggle span {
+  background: white;
+}
+
 @media (max-width: 768px) {
   .navbar-premium {
     padding: 1rem;
@@ -136,7 +199,11 @@
   .navbar-premium.scrolled {
     padding: 0.8rem 1rem;
     background: white;
-    backdrop-filter: none;
+  }
+
+  body.dark-mode .navbar-premium,
+  body.dark-mode .navbar-premium.scrolled {
+    background: #0a0a0a;
   }
 
   .menu-toggle {
@@ -173,9 +240,17 @@
     right: 0;
   }
 
+  body.dark-mode .navbar-nav {
+    background: #1a1a1a;
+  }
+
   .nav-link-premium {
     font-size: 0.9rem;
     color: #1a1a1a;
+  }
+
+  body.dark-mode .nav-link-premium {
+    color: white;
   }
 
   .nav-link-premium.active::after {

@@ -2,7 +2,7 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import './Journal.css';
 
-function Journal({ onOpenArticle }) {
+function Journal({ onOpenArticle, isDarkMode }) {
   const articles = [
     {
       id: 1,
@@ -31,7 +31,7 @@ function Journal({ onOpenArticle }) {
   ];
 
   return (
-    <div className='journal-page'>
+    <div className={`journal-page ${isDarkMode ? 'dark-mode' : ''}`}>
       <div className='journal-container'>
         <div className='journal-header'>
           <h1>JOURNAL</h1>

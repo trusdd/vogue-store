@@ -1,0 +1,59 @@
+.sizeguide-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 2000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.sizeguide-modal {
+  background: white;
+  padding: 2rem;
+  max-width: 500px;
+  width: 90%;
+  position: relative;
+}
+
+.sizeguide-close {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  background: none;
+  border: none;
+  font-size: 1rem;
+  cursor: pointer;
+}
+
+.sizeguide-modal h2 {
+  margin-bottom: 1.5rem;
+  letter-spacing: 2px;
+}
+
+.sizeguide-table table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.sizeguide-table th,
+.sizeguide-table td {
+  padding: 0.8rem;
+  text-align: center;
+  border-bottom: 1px solid #e0e0e0;
+}
+
+.sizeguide-table th {
+  font-weight: 500;
+  background: #f5f5f0;
+}
+
+.sizeguide-note {
+  margin-top: 1rem;
+  font-size: 0.7rem;
+  color: #999;
+  text-align: center;
+}

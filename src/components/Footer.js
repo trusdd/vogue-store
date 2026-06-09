@@ -1,9 +1,9 @@
 import React from 'react';
 import './Footer.css';
 
-function Footer() {
+function Footer({ onPageChange, isDarkMode }) {
   return (
-    <footer className='footer'>
+    <footer className={`footer ${isDarkMode ? 'dark-mode' : ''}`}>
       <div className='footer-container'>
         <div className='footer-section'>
           <h3>VOGUE STUDIO</h3>
@@ -11,26 +11,37 @@ function Footer() {
         </div>
 
         <div className='footer-section'>
-          <h4>CUSTOMER CARE</h4>
+          <h4>SHOP</h4>
           <ul>
-            <li>Shipping</li>
-            <li>Returns</li>
-            <li>Size Guide</li>
-            <li>FAQs</li>
+            <li onClick={() => onPageChange('home')}>All Products</li>
+            <li>ERD Collection</li>
+            <li>Nike Collaborations</li>
+            <li>Archive</li>
           </ul>
         </div>
 
         <div className='footer-section'>
-          <h4>LEGAL</h4>
+          <h4>INFO</h4>
           <ul>
+            <li onClick={() => onPageChange('about')}>About Us</li>
+            <li onClick={() => onPageChange('shipping')}>Shipping & Returns</li>
+            <li onClick={() => onPageChange('faq')}>FAQ</li>
             <li>Privacy Policy</li>
             <li>Terms of Service</li>
-            <li>Cookie Policy</li>
           </ul>
         </div>
 
         <div className='footer-section'>
-          <h4>FOLLOW US</h4>
+          <h4>CONTACT</h4>
+          <ul>
+            <li>hello@voguestudio.com</li>
+            <li>+7 (495) 000-00-00</li>
+            <li>Mon - Fri: 10am - 8pm</li>
+          </ul>
+        </div>
+
+        <div className='footer-section'>
+          <h4>FOLLOW</h4>
           <div className='footer-social'>
             <span>INSTAGRAM</span>
             <span>TWITTER</span>

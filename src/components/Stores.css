@@ -2,6 +2,11 @@
   min-height: 100vh;
   background: #faf9f8;
   padding: 8rem 2rem 4rem;
+  transition: background 0.3s ease;
+}
+
+.stores-page.dark-mode {
+  background: #0a0a0a;
 }
 
 .stores-container {
@@ -19,6 +24,11 @@
   font-weight: 500;
   letter-spacing: 3px;
   margin-bottom: 0.5rem;
+  color: #1a1a1a;
+}
+
+.stores-page.dark-mode .stores-header h1 {
+  color: white;
 }
 
 .stores-header p {
@@ -41,6 +51,11 @@
   transition: all 0.2s;
 }
 
+.stores-page.dark-mode .store-card {
+  background: #1a1a1a;
+  border-color: #2a2a2a;
+}
+
 .store-card:hover {
   border-color: #e0e0e0;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.04);
@@ -51,12 +66,21 @@
   font-weight: 600;
   letter-spacing: 2px;
   margin-bottom: 1rem;
+  color: #1a1a1a;
+}
+
+.stores-page.dark-mode .store-card h3 {
+  color: white;
 }
 
 .store-address {
   font-size: 0.8rem;
   color: #666;
   margin-bottom: 0.5rem;
+}
+
+.stores-page.dark-mode .store-address {
+  color: #aaa;
 }
 
 .store-hours {
@@ -76,6 +100,10 @@
   transition: color 0.2s;
 }
 
+.stores-page.dark-mode .store-directions {
+  color: #667eea;
+}
+
 .store-directions:hover {
   color: #667eea;
 }
@@ -84,6 +112,10 @@
   margin-top: 3rem;
   padding-top: 2rem;
   border-top: 1px solid #f0ede8;
+}
+
+.stores-page.dark-mode .stores-map-container {
+  border-top-color: #2a2a2a;
 }
 
 .stores-map {

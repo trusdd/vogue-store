@@ -9,6 +9,8 @@ function Navbar({
   onPageChange,
   isLoggedIn,
   onLogout,
+  isDarkMode,
+  onToggleTheme,
 }) {
   const [scrolled, setScrolled] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -104,6 +106,10 @@ function Navbar({
         </nav>
 
         <div className='navbar-actions'>
+          <button className='theme-toggle' onClick={onToggleTheme}>
+            {isDarkMode ? '☼' : '☾'}
+          </button>
+
           <motion.button
             className='cart-btn-premium'
             onClick={onCartClick}

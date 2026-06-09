@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import './Login.css';
 
-function Login({ onLogin, onRegister }) {
+function Login({ onLogin, onRegister, isDarkMode }) {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
@@ -16,7 +16,7 @@ function Login({ onLogin, onRegister }) {
   };
 
   return (
-    <div className='auth-page'>
+    <div className={`auth-page ${isDarkMode ? 'dark-mode' : ''}`}>
       <div className='auth-container'>
         <div className='auth-card'>
           <h1>ВХОД</h1>
