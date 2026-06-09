@@ -136,6 +136,7 @@
   .navbar-premium.scrolled {
     padding: 0.8rem 1rem;
     background: white;
+    backdrop-filter: none;
   }
 
   .menu-toggle {
