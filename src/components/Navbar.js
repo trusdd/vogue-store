@@ -47,6 +47,10 @@ function Navbar({
         </motion.div>
 
         <nav className={`navbar-nav ${isMenuOpen ? 'open' : ''}`}>
+          <div className='close-icon' onClick={closeMenu}>
+            ✕
+          </div>
+
           <a
             href='#'
             className={`nav-link-premium ${currentPage === 'home' ? 'active' : ''}`}
