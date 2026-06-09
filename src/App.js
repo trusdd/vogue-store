@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import './App.css';
 import ProductCard from './components/ProductCard';
@@ -24,6 +24,7 @@ function App() {
   const [selectedProduct, setSelectedProduct] = useState(null);
   const [selectedArticle, setSelectedArticle] = useState(null);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [scrollPosition, setScrollPosition] = useState(0);
 
   useEffect(() => {
     const savedCart = localStorage.getItem('cart');
@@ -262,6 +263,7 @@ function App() {
   };
 
   const openProductPage = (product) => {
+    setScrollPosition(window.scrollY);
     setSelectedProduct(product);
     setCurrentPage('product');
     window.scrollTo(0, 0);
@@ -271,6 +273,14 @@ function App() {
     setSelectedArticle(article);
     setCurrentPage('article');
     window.scrollTo(0, 0);
+  };
+
+  const goBackToHome = () => {
+    setCurrentPage('home');
+    setSelectedProduct(null);
+    setTimeout(() => {
+      window.scrollTo(0, scrollPosition);
+    }, 50);
   };
 
   const filteredProducts = products.filter((p) => {
@@ -428,7 +438,7 @@ function App() {
                 onAddToCart={addToCart}
                 onToggleFavorite={toggleFavorite}
                 isFavorite={favorites.includes(selectedProduct.id)}
-                onBack={() => setCurrentPage('home')}
+                onBack={goBackToHome}
               />
             </motion.div>
           )}
