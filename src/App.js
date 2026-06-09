@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import './App.css';
 import ProductCard from './components/ProductCard';
@@ -24,16 +24,23 @@ function App() {
   const [selectedProduct, setSelectedProduct] = useState(null);
   const [selectedArticle, setSelectedArticle] = useState(null);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const [scrollPosition, setScrollPosition] = useState(0);
 
   useEffect(() => {
     const savedCart = localStorage.getItem('cart');
     const savedFavorites = localStorage.getItem('favorites');
     const savedLogin = localStorage.getItem('isLoggedIn');
+    const savedScrollPosition = localStorage.getItem('scrollPosition');
 
     if (savedCart) setCartItems(JSON.parse(savedCart));
     if (savedFavorites) setFavorites(JSON.parse(savedFavorites));
     if (savedLogin) setIsLoggedIn(JSON.parse(savedLogin));
+
+    if (savedScrollPosition && window.location.hash !== '#product') {
+      setTimeout(() => {
+        window.scrollTo(0, parseInt(savedScrollPosition));
+        localStorage.removeItem('scrollPosition');
+      }, 100);
+    }
 
     const productsData = [
       {
@@ -263,7 +270,7 @@ function App() {
   };
 
   const openProductPage = (product) => {
-    setScrollPosition(window.scrollY);
+    localStorage.setItem('scrollPosition', window.scrollY);
     setSelectedProduct(product);
     setCurrentPage('product');
     window.scrollTo(0, 0);
@@ -278,9 +285,6 @@ function App() {
   const goBackToHome = () => {
     setCurrentPage('home');
     setSelectedProduct(null);
-    setTimeout(() => {
-      window.scrollTo(0, scrollPosition);
-    }, 50);
   };
 
   const filteredProducts = products.filter((p) => {
