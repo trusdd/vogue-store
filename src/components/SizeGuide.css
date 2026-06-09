@@ -18,6 +18,10 @@
   width: 90%;
   position: relative;
   border-radius: 0;
+  z-index: 2001;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+  max-height: 80vh;
+  overflow-y: auto;
 }
 
 body.dark-mode .sizeguide-modal {
@@ -30,10 +34,11 @@ body.dark-mode .sizeguide-modal {
   right: 1rem;
   background: none;
   border: none;
-  font-size: 1rem;
+  font-size: 1.2rem;
   cursor: pointer;
   color: #666;
   transition: color 0.2s;
+  z-index: 2002;
 }
 
 .sizeguide-close:hover {
@@ -52,10 +57,15 @@ body.dark-mode .sizeguide-close:hover {
   margin-bottom: 1.5rem;
   letter-spacing: 2px;
   color: #1a1a1a;
+  text-align: center;
 }
 
 body.dark-mode .sizeguide-modal h2 {
   color: white;
+}
+
+.sizeguide-table {
+  overflow-x: auto;
 }
 
 .sizeguide-table table {
